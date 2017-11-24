@@ -1,0 +1,17 @@
+<div>
+    <h1>Account confirmation</h1>
+
+    <p>Dear {{ user.firstname|capitalize }},</p>
+
+    <p>Welcome to <b>uDina application</b>!</p>
+
+    <p>To confirm your account please <a href="{{ confirm_url }}">click here</a>.
+        Alternatively, you can paste the following link in your browser's address bar:</p>
+
+    <p>{{ confirm_url }}</p>
+
+    <p><b>Remember that this code is valid for {{ expiration }} hour(s).</b></p>
+
+    <p>Sincerely,<br>The uDina Team</p>
+    <p><small><b>Note:</b> replies to this email address are not monitored.</small></p>
+</div>

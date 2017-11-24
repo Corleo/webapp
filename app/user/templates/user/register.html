@@ -1,0 +1,36 @@
+{% extends "user/base_user.html" %}
+
+{% block container %}
+<div class="row register">
+    <div class="col-md-4 col-md-offset-4">
+        <h1 class="text-center">Sign Up</h1><br>
+        <form method="POST" action="{{ url_for('.register') }}" accept-charset="UTF-8">
+            {{ form.csrf_token }}
+            {{ render_field(form.firstname, placeholder="First Name", autofocus="") }}
+            {{ render_field(form.lastname, placeholder="Last Name") }}
+            {{ render_field(form.username, placeholder="Username") }}
+            {{ render_field(form.email, placeholder="Email") }}
+            {{ render_field(form.email2, placeholder="Confirm Email") }}
+
+            {{ render_field(form.password, placeholder="Password",
+                            glyphicon="glyphicon-eye-close", glyphpos="inner-addon right-addon") }}
+
+            {{ render_field(form.password2, placeholder="Confirm Password",
+                            glyphicon="glyphicon-eye-close", glyphpos="inner-addon right-addon") }}
+            {{ form.remember_me }} {{ form.remember_me.label }}
+            <!-- <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="accept_tos" value="ToS agreement">
+                    <span>Accept the </span>
+                </label>
+                    <a href="">Terms of Service</a>
+            </div> -->
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Sign Up</button>
+        </form>
+        <div class="text-center">
+            <br><span>Already have an Account?</span>
+            <a href="{{ url_for('.login') }}">Login.</a>
+        </div>
+    </div> <!-- class col -->
+</div> <!-- class row -->
+{% endblock %}

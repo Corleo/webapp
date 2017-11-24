@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% from '_macros.html' import render_field %}
+
+{% block head %}
+    {{ super() }}
+    <link href="{{ url_for('.static', filename='user/user.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block js_script %}
+    <script src="{{ url_for('.static', filename='user/user.js') }}"></script>
+{% endblock %}

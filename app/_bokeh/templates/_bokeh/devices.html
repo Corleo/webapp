@@ -1,0 +1,58 @@
+{% extends "_bokeh/base_bokeh.html" %}
+
+{% block js_script %}
+    {{ super() }}
+    {# {{ moment.include_moment(local_js=url_for('static', filename='vendor/js/moment.min.js')) }} #}
+    {{ moment.include_moment(local_js=url_for('static', filename='vendor/js/moment-with-locales.min.js')) }}
+    {{ moment.lang("en-gb") }}
+    {# {{ moment.lang("pt-br") }} #}
+{% endblock %}
+
+{% from '_macros.html' import render_field %}
+
+{% block main %}
+<div class="row devices">
+    <div class="col-md-6 col-md-offset-3">
+        <!-- Create devices into database -->
+        <h3 class="text-center">Create / Update device for your account</h3>
+        <form method="POST" action="{{ url_for('.devices') }}" accept-charset="UTF-8">
+            {{ form.csrf_token }}
+            <table class="table table-bordered table-striped table-condensed">
+                <tr>
+                    <th class="field_name">Device code</th>
+                    <th class="field_name">Use this device</th>
+                    <th class="field_name">Create / update</th>
+                </tr>
+                <tr class="text-center">
+                    <td class="field_data">{{ render_field(form.device_code, placeholder="Code") }}</td>
+                    <td class="field_data">{{ render_field(form.use_device) }}</td>
+                    <td class="field_data">
+                        <button type="submit" class="btn btn-primary btn-block" name="submit">Confirm</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div> <!-- /.col -->
+</div> <!-- /.row -->
+
+<div class="row devices">
+    <div class="col-md-4 col-md-offset-4">
+        <!-- List devices from database -->
+        <h3 class="text-center">For use in the measurements</h3>
+        <table class="table table-bordered table-striped table-condensed">
+            <tr>
+                <th class="field_name">Device code</th>
+                {# <th class="field_name">Updated on</th> #}
+            </tr>
+            {% if devices %}
+            {% for device in devices %}
+            <tr>
+                <td class="field_data">{{ device.code }}</td>
+                {# <td class="field_data">{{ moment(device.updated_on).format('LLL') }}</td> #}
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div> <!-- /.col -->
+</div> <!-- /.row -->
+{% endblock %}

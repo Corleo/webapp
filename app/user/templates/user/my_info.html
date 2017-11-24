@@ -1,0 +1,58 @@
+{% extends "user/base_user.html" %}
+
+{% block js_script %}
+    {{ super() }}
+    {# {{ moment.include_moment(local_js=url_for('static', filename='vendor/js/moment.min.js')) }} #}
+    {{ moment.include_moment(local_js=url_for('static', filename='vendor/js/moment-with-locales.min.js')) }}
+    {{ moment.lang("en-gb") }}
+    {# {{ moment.lang("pt-br") }} #}
+{% endblock %}
+
+{% block container %}
+<div class="row my_info">
+    <div class="col-md-4 col-md-offset-4">
+        <h1 class="text-center">My Info</h1><br>
+        <form method="POST" action="{{ url_for('.my_info') }}" accept-charset="UTF-8">
+            {{ form.csrf_token }}
+
+            <table class="table table-bordered table-striped table-condensed">
+                <tr>
+                    <th class="field_name">Firstname</th>
+                    <td class="field_data">{{ render_field(form.firstname, value=user.firstname, autofocus="") }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Lastname</th>
+                    <td class="field_data">{{ render_field(form.lastname, value=user.lastname) }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Username</th>
+                    <td class="field_data">{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Email</th>
+                    <td class="field_data">{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Is Admin?</th>
+                    <td class="field_data">{{ 'Yes' if user.admin else 'No' }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Created on</th>
+                    <td class="field_data">{{ moment(user.created_on).format('LLL') }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Updated on</th>
+                    <td class="field_data">{{ moment(user.updated_on).format('LLL') }}</td>
+                </tr>
+                <tr>
+                    <th class="field_name">Confirmed on</th>
+                    <td class="field_data">{{ moment(user.confirmed_on).format('LLL') }}</td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Update</button>
+        </form>
+    </div> <!-- class col -->
+</div> <!-- class row -->
+
+{% endblock %}

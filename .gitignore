@@ -1,0 +1,10 @@
+instance/
+migrations/
+db_queries/
+
+.webassets-cache
+*.pyc
+*.db
+*.stackdump
+*.swp
+__pycache__

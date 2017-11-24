@@ -1,0 +1,76 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top my-navbar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" id="navbar-toggle" class="navbar-toggle"
+            data-toggle="collapse" data-target="#topnav" aria-expanded="false"
+            aria-controls="#topnav">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-navicon"></i>
+            </button>
+
+            {% set blueprint = request.url_rule.endpoint %}
+            {% if (blueprint.split('.')[0] == "bokeh" and current_user.is_authenticated
+               and current_user.confirmed) %}
+            <button type="button" id="sidebar-toggle" class="navbar-toggle visible-xs"
+            data-toggle="collapse" data-target="#sidebar" aria-expanded="false"
+            aria-controls="#sidebar">
+                <span class="sr-only">Toggle side navigation</span>
+                <i class="fa fa-dashboard"></i>
+            </button>
+            {% endif %}
+
+            <a class="navbar-brand" href="{{ url_for('bokeh.index') }}">
+                <i class="nav-icon fa fa-home"></i> Home
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse topnav" id="topnav">
+            <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated %}
+                {% if current_user.confirmed %}
+                <li class="{{ 'active' if blueprint == 'user.my_info' }}">
+                    <a href="{{ url_for('user.my_info') }}">
+                        <i class="nav-icon fa fa-vcard"></i> My Info
+                    </a>
+                </li>
+                <li class="{{ 'active' if blueprint == 'user.request_change_email' }}">
+                    <a href="{{ url_for('user.request_change_email') }}">
+                        <i class="nav-icon fa fa-envelope"></i> Email
+                    </a>
+                </li>
+                <li class="{{ 'active' if blueprint == 'user.change_password' }}">
+                    <a href="{{ url_for('user.change_password') }}">
+                        <i class="nav-icon fa fa-user-secret"></i> Password
+                    </a>
+                </li>
+                {% else %}
+                <li class="{{ 'active' if blueprint == 'user.unconfirmed' }}">
+                    <a href="{{ url_for('user.unconfirmed') }}">
+                        <i class="nav-icon fa fa-check-square-o"></i> Confirm
+                    </a>
+                </li>
+                {% endif %}
+                <li class="{{ 'active' if blueprint == 'user.logout' }}">
+                    <a href="{{ url_for('user.logout') }}">
+                        <i class="nav-icon fa fa-sign-out"></i> Logout
+                    </a>
+                </li>
+            {% else %}
+                <li class="{{ 'active' if blueprint == 'user.login' }}">
+                    <a href="{{ url_for('user.login') }}">
+                        <i class="nav-icon fa fa-sign-in"></i> Login
+                    </a>
+                </li>
+                <li class="{{ 'active' if blueprint == 'user.register' }}">
+                    <a href="{{ url_for('user.register') }}">
+                        <i class="nav-icon fa fa-user-plus"></i> Sign up
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>

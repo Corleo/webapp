@@ -1,0 +1,54 @@
+.row.login           { padding-top: 130px;}
+.row.register        { padding-top: 70px;}
+.row.my_info         { padding-top: 100px;}
+.row.unconfirmed     { padding-top: 70px;}
+.row.change_email    { padding-top: 120px;}
+.row.change_password { padding-top: 120px;}
+.row.reset_password  { padding-top: 120px;}
+a.reset_password     { padding-bottom: 10px;}
+
+
+/********************************************/
+/*Glyphicons inside input fields*************/
+/********************************************/
+/* enable absolute positioning */
+.inner-addon {position: relative;}
+/* style icon */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    z-index: 1000;
+    color: #c7c7c7;
+}
+/* align icon */
+.left-addon .glyphicon  {left:  0px;}
+.right-addon .glyphicon {right: 0px;}
+/* add padding  */
+.left-addon input  {padding-left:  30px;}
+.right-addon input {padding-right: 30px;}
+
+
+/********************************************/
+
+.field_data .form-control {
+    height: 24px;
+    padding: 0px;
+}
+
+.field_data input[type="text"] {
+    /*border:none !important;*/
+    margin: 0px;
+    background-color:transparent !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.field_data input[type="text"]:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+td.field_data div {
+    margin: 0px;
+}

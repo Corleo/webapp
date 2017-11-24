@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="author" content="{% block author %}{% endblock %}">
+
+        <!-- styles -->
+        <link href="{{ url_for('static', filename='vendor/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ url_for('static', filename='vendor/css/font-awesome.min.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="screen">
+        <!-- <link href="url_for('static', filename='img/favicon.ico')" rel="icon"> -->
+        {% endblock %}
+    </head>
+    <body>
+        {% include "navigation.html" %}
+
+        <div id="header">
+            {% block header %}{% endblock %}
+        </div>
+
+        <div id="container" class="container-fluid">
+            <!-- child template -->
+            {% block container %}{% endblock %}
+
+            {% block messages %}
+                {% include "messages.html" %}
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+        <!-- <footer id="footer" class="container-fluid text-center">
+            <p>Footer Text</p>
+        </footer> -->
+        {% endblock %}
+
+        <!-- scripts -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="{{ url_for('static', filename='vendor/js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        {% block js_script %}{% endblock %}
+    </body>
+</html>

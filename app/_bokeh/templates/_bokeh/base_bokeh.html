@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link href="{{ url_for('.static', filename='_bokeh/bokeh.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block js_script %}
+    <script src="{{ url_for('.static', filename='_bokeh/bokeh.js') }}"></script>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+{% block messages %}{% endblock %}
+
+{% block container %}
+<div class="row content">
+    {% if current_user.is_authenticated and current_user.confirmed %}
+    <!-- sidebar -->
+    <div class="col-sm-2 collapse sidebar" id="sidebar">
+        <ul class="nav nav-sidebar">
+            {% set endpoint = request.url_rule.endpoint.split('.')[1] %}
+            <li class="link {{ 'active' if endpoint == 'devices' }}">
+                <a href="{{ url_for('.devices') }}" title="">
+                    <i class="nav-icon fa fa-microchip"></i><span class="nav-text">Devices</span>
+                </a>
+            </li>
+            <li class="link {{ 'active' if endpoint == 'calibration' }}">
+                <a href="{{ url_for('.calibration') }}" title="">
+                    <i class="nav-icon fa fa-gears"></i><span class="nav-text">Calibration</span>
+                </a>
+            </li>
+            <li class="link {{ 'active' if endpoint == 'measurement' }}">
+                <a href="{{ url_for('.measurement') }}" title="">
+                    <i class="nav-icon fa fa-tachometer"></i><span class="nav-text">Measurement</span>
+                </a>
+            </li>
+            <li class="link {{ 'active' if endpoint == 'plot_measures' }}">
+                <a href="{{ url_for('.plot_measures') }}" title="">
+                    <i class="nav-icon fa fa-bar-chart"></i><span class="nav-text">Plot measures</span>
+                </a>
+            </li>
+        </ul>
+
+        {% block sidenav_content %}{% endblock %}
+    </div>
+
+    <div class="col-sm-10 col-sm-offset-2 main">
+        <!-- main -->
+        {% block main %}
+            {% if title %}
+                <h1>{{ title }}</h1>
+            {% endif %}
+
+            <div class="bokeh_div">
+                {{ bokeh_script|safe }}
+            </div>
+        {% endblock %}
+        {% include "messages.html" %}
+    </div> <!-- /.row .main -->
+    {% endif %}
+</div> <!-- /.row .content -->
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% macro render_field(field, placeholder=None, glyphicon=None, glyphpos="") %}
+    <div id="div-{{field.id }}" class="form-group {{ glyphpos }}">
+        {{ field.label(class="sr-only") }}
+        {% if glyphicon %}
+            <span class="glyphicon {{ glyphicon }}"></span>
+        {% endif %}
+        {% set css_class = 'form-control ' + kwargs.pop('class', '') %}
+        {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
+    </div>
+{% endmacro %}
+
+{% macro input(name, value='', type='text') -%}
+    <input type="{{ type }}" value="{{ value|e }}" name="{{ name }}">
+{%- endmacro %}
+
+{%- macro textarea(name, value='', rows=10, cols=40) -%}
+    <textarea name="{{ name }}" rows="{{ rows }}" cols="{{ cols
+        }}">{{ value|e }}</textarea>
+{%- endmacro %}

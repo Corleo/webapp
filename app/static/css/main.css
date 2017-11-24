@@ -1,0 +1,18 @@
+body              { padding-top : 50px; }
+.navbar-fixed-top {border       : 0; }
+.navbar-header button i.fa { color: white; }
+footer  {
+    position         : absolute;
+    bottom           : 0;
+    width            : 100%;
+    padding-top      : 10px;
+
+    background-color : #222;
+    color            : white;
+}
+
+.align-left  { float: left;}
+.align-right { float: right;}
+
+.error_msg   { padding-top: 190px;}
+.flash_msg   { padding-top: 20px;}

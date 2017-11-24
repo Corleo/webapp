@@ -1,0 +1,131 @@
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    display          : none; /* Hide for mobile, show later */
+    padding          : 0px;
+    margin           : 0px;
+    color            : #b6a5a5;
+    background-color : #333;
+}
+.sidebar .link > ul > li {
+    padding-bottom: 10px;
+}
+@media screen and (min-width: 768px) {
+    .sidebar {
+        position   : fixed;
+        top        : 50px;
+        bottom     : 0;
+        left       : 0;
+        z-index    : 1000;
+        display    : block;
+        overflow-x : hidden;
+        overflow-y : auto; /* Scrollable contents if viewport is shorter than content. */
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar > .link > a {
+    display         : block;
+    padding         : 12px 0px;
+    text-decoration : none;
+    font-weight     : bold;
+    color           : #b6a5a5;
+}
+.nav-sidebar > .link > a:hover,
+.nav-sidebar > .link > a:focus,
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color            : #fff;
+    background-color : #293846;
+}
+.nav-sidebar > .link > a > .nav-icon {
+    position       : relative;
+    display        : table-cell;
+    vertical-align : middle;
+    width          : 60px;
+    height         : 36px;
+    text-align     : center;
+    font-size      : 20px;
+}
+.nav-sidebar > .link > a > .nav-text {
+    position       : relative;
+    display        : table-cell;
+    vertical-align : middle;
+    width          : auto;
+    padding-right  : 20px;
+    font-size      : 14px;
+}
+/*.sidenav .collapseable li {
+    padding-left: 20px;
+    padding-top : 5px;
+}
+.sidenav .collapseable a {
+    color           : #b6a5a5;
+    font-size       : 12px;
+    padding         : 0px 10px;
+    text-decoration : none;
+    display         : block;
+}
+.sidenav .collapseable a:hover {
+    color: #fff;
+}
+.sidenav .collapseable {
+    border-left     : 4px solid #1ab394;
+    background-color: #293846;
+}*/
+
+
+/*
+ * Main content
+ */
+
+.main {
+    position     : relative;
+    padding-left : 20px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+
+
+/********************************************/
+
+td.field_data {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.field_data .form-control {
+    height: 24px;
+    padding: 0px;
+}
+
+.field_data input {
+    margin: 0px;
+}
+
+.field_data input[type="text"] {
+    background-color:transparent !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.field_data input[type="text"]:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.field_data button {
+    margin: 0px;
+    padding: 2px;
+}
+
+td.field_data div {
+    margin: 0px;
+}
